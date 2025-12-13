@@ -1,0 +1,28 @@
+/* Team Section Styles */
+.team-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+    background: var(--bg-primary);
+}
+
+.team-content {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.team-photo {
+    margin: var(--spacing-lg) 0;
+}
+
+.team-description {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-top: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.team-description em {
+    color: var(--primary);
+    font-style: normal;
+    font-weight: 600;
+}

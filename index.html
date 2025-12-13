@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño e Implementación de Red LAN - Proyecto Académico</title>
+    <meta name="description"
+        content="Proyecto académico de infraestructura de red para aula de cómputo. Topología en estrella, cableado estructurado T568B y configuración IP.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section id="hero-section" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Diseño, armado y configuración de una red LAN funcional</h1>
+                <p class="hero-subtitle">
+                    Proyecto académico de infraestructura de red para aula de cómputo<br>
+                    <span class="highlight-text">Topología en estrella – Cableado estructurado – Configuración IP</span>
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-card" data-aos="fade-up" data-delay="0">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                                <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                                <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                                <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor"
+                                    stroke-width="2" />
+                            </svg>
+                        </div>
+                        <div class="stat-number">11</div>
+                        <div class="stat-label">Equipos conectados</div>
+                    </div>
+
+                    <div class="stat-card" data-aos="fade-up" data-delay="100">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                                <path d="M12 3 L12 9 M12 15 L12 21 M3 12 L9 12 M15 12 L21 12" stroke="currentColor"
+                                    stroke-width="2" />
+                            </svg>
+                        </div>
+                        <div class="stat-number">★</div>
+                        <div class="stat-label">Topología en estrella</div>
+                    </div>
+
+                    <div class="stat-card" data-aos="fade-up" data-delay="200">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 6 L22 6 M2 12 L22 12 M2 18 L22 18" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <div class="stat-number">T568B</div>
+                        <div class="stat-label">Estándar</div>
+                    </div>
+
+                    <div class="stat-card" data-aos="fade-up" data-delay="300">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 9 L12 3 L21 9 L12 15 Z" stroke="currentColor" stroke-width="2"
+                                    fill="none" />
+                                <path d="M3 15 L12 21 L21 15" stroke="currentColor" stroke-width="2" fill="none" />
+                            </svg>
+                        </div>
+                        <div class="stat-number">LAN</div>
+                        <div class="stat-label">Red LAN con IP estática</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image" id="hero-image-container">
+                <!-- Image will be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Context Section -->
+    <section id="context-section" class="context-section">
+        <div class="container">
+            <div class="two-column-layout">
+                <div class="content-column">
+                    <h2 class="section-title">Contexto del Proyecto</h2>
+                    <p class="section-text">
+                        Este proyecto documenta de forma visual y técnica el proceso completo de planeación,
+                        instalación y puesta en marcha de una <strong>red LAN</strong> en un aula de cómputo,
+                        aplicando buenas prácticas de <strong>cableado estructurado</strong> y
+                        <strong>configuración de red</strong>.
+                    </p>
+                    <p class="section-text">
+                        El objetivo principal fue diseñar e implementar una infraestructura de red funcional
+                        y escalable que permitiera la interconexión eficiente de todos los equipos del aula,
+                        garantizando conectividad estable y cumplimiento de estándares internacionales.
+                    </p>
+                </div>
+                <div class="image-column" id="context-image-container">
+                    <!-- Image will be added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Network Design Section -->
+    <section id="design-section" class="design-section">
+        <div class="container">
+            <h2 class="section-title centered">Diseño de la Red</h2>
+
+            <!-- Logical Diagram -->
+            <div class="design-subsection">
+                <h3 class="subsection-title">Diagrama Lógico</h3>
+                <div class="diagram-container" id="logical-diagram-container">
+                    <!-- Image will be added here -->
+                </div>
+                <p class="diagram-caption">
+                    <strong>Switch central</strong> conectando <strong>11 equipos</strong> en
+                    <strong>topología estrella</strong> - Diseño realizado en Cisco Packet Tracer
+                </p>
+            </div>
+
+            <!-- Physical Diagram -->
+            <div class="design-subsection">
+                <h3 class="subsection-title">Diagrama Físico</h3>
+                <div class="image-gallery" id="physical-gallery">
+                    <!-- Images will be added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assembly Timeline Section -->
+    <section id="assembly-section" class="assembly-section">
+        <div class="container">
+            <h2 class="section-title centered">Armado de la Red (Paso a Paso)</h2>
+
+            <div class="timeline" id="timeline-container">
+                <!-- Timeline items will be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Standards Section -->
+    <section id="standards-section" class="standards-section">
+        <div class="container">
+            <h2 class="section-title centered">Terminación y Estándares</h2>
+            <p class="section-intro">
+                Se aplicó el <strong>estándar T568B</strong> y se verificó la continuidad de cada cable
+                mediante probador de red.
+            </p>
+
+            <div class="standards-grid" id="standards-grid">
+                <!-- Standard cards will be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Configuration Section -->
+    <section id="configuration-section" class="configuration-section">
+        <div class="container">
+            <h2 class="section-title centered">Configuración de Red</h2>
+
+            <div class="config-layout">
+                <div class="config-images" id="config-images">
+                    <!-- Images will be added here -->
+                </div>
+
+                <div class="config-specs">
+                    <h3 class="subsection-title">Especificaciones Técnicas</h3>
+                    <ul class="tech-list">
+                        <li><strong>Protocolo:</strong> IPv4</li>
+                        <li><strong>Tipo de asignación:</strong> IP estática</li>
+                        <li><strong>Rango de IPs:</strong> 192.168.100.1 – 192.168.100.11</li>
+                        <li><strong>Máscara de subred:</strong> 255.255.255.0</li>
+                        <li><strong>Gateway predeterminado:</strong> 192.168.100.1</li>
+                        <li><strong>Verificación:</strong> Ping exitoso entre equipos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results-section" class="results-section">
+        <div class="container">
+            <h2 class="section-title centered">Resultados y Validación</h2>
+
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-text">Equipos conectados correctamente</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-text">Direcciones IP asignadas</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-text">Comunicación exitosa entre equipos</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-text">Red estable y operativa</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion-section" class="conclusion-section">
+        <div class="container">
+            <div class="conclusion-content">
+                <h2 class="section-title centered">Conclusión</h2>
+                <p class="conclusion-text">
+                    El proyecto demuestra la correcta aplicación de conceptos de redes de computadoras,
+                    desde el diseño hasta la implementación física y lógica, asegurando una red LAN
+                    <strong>funcional</strong>, <strong>ordenada</strong> y <strong>estable</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-section" class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-item">
+                    <strong>Integrantes del Proyecto:</strong>
+                    <span>Amaury Jahziel Gordillo Hernández<br>Rafael Aquino Villanueva</span>
+                </div>
+                <div class="footer-item">
+                    <strong>Carrera:</strong>
+                    <span>Ingeniería en Sistemas Computacionales</span>
+                </div>
+                <div class="footer-item">
+                    <strong>Materia:</strong>
+                    <span>Redes de Computadoras</span>
+                </div>
+                <div class="footer-item">
+                    <strong>Docente:</strong>
+                    <span>Ing. Jesús Eduardo Constantino Gordillo</span>
+                </div>
+                <div class="footer-item">
+                    <strong>Institución:</strong>
+                    <span>Tecnológico Nacional de México<br>Instituto Tecnológico de Frontera Comalapa</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
