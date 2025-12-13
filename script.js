@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize context images
 function initializeImages() {
-    // Context image - empty classroom where the network was installed
+    // Context image - team photo at CEI entrance
     const contextContainer = document.getElementById('context-image-container');
-    contextContainer.innerHTML = '<img src="images/aula-vacia.png" alt="Aula vacía donde se realizó el trabajo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">';
+    contextContainer.innerHTML = '<img src="images/equipo-cei-entrada.png" alt="Equipo de trabajo frente al Centro de Especialidades en Informática" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">';
 
 
     // Logical diagram - use the real Packet Tracer image
