@@ -6,15 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeScrollAnimations();
 });
 
-// Initialize hero and context images
+// Initialize context images
 function initializeImages() {
-    // Hero image - real network diagram from Packet Tracer
-    const heroContainer = document.getElementById('hero-image-container');
-    heroContainer.innerHTML = '<img src="images/diagrama-packet-tracer.png" alt="Diagrama de red en Packet Tracer" style="width: 100%; height: 100%; object-fit: contain; background: #f8fafc; border-radius: 16px;">';
-
-    // Context image - real classroom before installation
+    // Context image - empty classroom where the network was installed
     const contextContainer = document.getElementById('context-image-container');
-    contextContainer.innerHTML = '<img src="images/aula-antes.jpg" alt="Aula antes de la instalación" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">';
+    contextContainer.innerHTML = '<img src="images/aula-vacia.png" alt="Aula vacía donde se realizó el trabajo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">';
 
 
     // Logical diagram - use the real Packet Tracer image
@@ -92,14 +88,6 @@ function initializeTimeline() {
             color: '#10b981',
             hasImage: true,
             imagePath: 'images/equipos-conectados.png'
-        },
-        {
-            number: 4,
-            title: 'Verificación final de conectividad',
-            description: 'Se realizaron pruebas de continuidad con tester de red y se verificó la comunicación entre todos los equipos mediante comandos ping.',
-            color: '#ec4899',
-            hasImage: true,
-            imagePath: 'images/test-tester.jpg'
         }
     ];
 
