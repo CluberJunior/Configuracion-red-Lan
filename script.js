@@ -278,30 +278,30 @@ async function trackVisit() {
     if (!supabase) return;
 
     try {
-        // Get visitor's IP and geolocation from ip-api.com (free, no API key required)
-        const geoResponse = await fetch('http://ip-api.com/json/?fields=status,country,city,query');
+        // Get visitor's IP and geolocation from ipapi.co (HTTPS compatible, free tier)
+        const geoResponse = await fetch('https://ipapi.co/json/');
         const geoData = await geoResponse.json();
 
-        if (geoData.status === 'success') {
-            const visitData = {
-                ip_address: geoData.query,
-                country: geoData.country,
-                city: geoData.city || 'Unknown',
-                user_agent: navigator.userAgent,
-                referrer: document.referrer || 'Direct'
-            };
+        const visitData = {
+            ip_address: geoData.ip || 'Unknown',
+            country: geoData.country_name || 'Unknown',
+            city: geoData.city || 'Unknown',
+            user_agent: navigator.userAgent,
+            referrer: document.referrer || 'Direct'
+        };
 
-            // Insert visit record into Supabase
-            const { error } = await supabase
-                .from('page_visits')
-                .insert([visitData]);
+        // Insert visit record into Supabase
+        const { error } = await supabase
+            .from('page_visits')
+            .insert([visitData]);
 
-            if (error) {
-                console.error('Error tracking visit:', error.message);
-            }
+        if (error) {
+            console.error('Error tracking visit:', error.message);
+        } else {
+            console.log('Visit tracked successfully');
         }
     } catch (error) {
-        console.error('Error getting geolocation:', error);
+        console.error('Error tracking visit:', error);
     }
 }
 
