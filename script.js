@@ -258,7 +258,7 @@ function initializeScrollAnimations() {
 // Supabase configuration
 const SUPABASE_URL = 'https://tijphhyxnvofhicueegq.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpanBoaHl4bnZvZmhpY3VlZWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3NjU0OTcsImV4cCI6MjA4MTM0MTQ5N30.4MeVuQ_CSsvEzrAoy3lutizNSV0Sca8_l6Vr1kZxcjI';
-const ACCESS_CODE = 'CEI2024';
+const ACCESS_CODE = 'CEI2025*';
 
 // Initialize Supabase client
 let supabase = null;
