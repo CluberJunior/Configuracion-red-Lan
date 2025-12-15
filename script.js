@@ -250,3 +250,184 @@ function initializeScrollAnimations() {
         });
     });
 }
+
+// ============================================================
+// VISITOR TRACKING SYSTEM WITH SUPABASE
+// ============================================================
+
+// Supabase configuration
+const SUPABASE_URL = 'https://tijphhyxnvofhicueegq.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpanBoaHl4bnZvZmhpY3VlZWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3NjU0OTcsImV4cCI6MjA4MTM0MTQ5N30.4MeVuQ_CSsvEzrAoy3lutizNSV0Sca8_l6Vr1kZxcjI';
+const ACCESS_CODE = 'CEI2024';
+
+// Initialize Supabase client
+let supabase = null;
+
+function initSupabase() {
+    if (window.supabase) {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        trackVisit();
+    } else {
+        // Retry after a short delay if Supabase is not loaded yet
+        setTimeout(initSupabase, 100);
+    }
+}
+
+// Track visitor on page load
+async function trackVisit() {
+    if (!supabase) return;
+
+    try {
+        // Get visitor's IP and geolocation from ip-api.com (free, no API key required)
+        const geoResponse = await fetch('http://ip-api.com/json/?fields=status,country,city,query');
+        const geoData = await geoResponse.json();
+
+        if (geoData.status === 'success') {
+            const visitData = {
+                ip_address: geoData.query,
+                country: geoData.country,
+                city: geoData.city || 'Unknown',
+                user_agent: navigator.userAgent,
+                referrer: document.referrer || 'Direct'
+            };
+
+            // Insert visit record into Supabase
+            const { error } = await supabase
+                .from('page_visits')
+                .insert([visitData]);
+
+            if (error) {
+                console.error('Error tracking visit:', error.message);
+            }
+        }
+    } catch (error) {
+        console.error('Error getting geolocation:', error);
+    }
+}
+
+// Show admin login modal
+function showAdminModal() {
+    const modal = document.getElementById('admin-modal');
+    modal.classList.add('active');
+    document.getElementById('access-code-input').focus();
+    document.getElementById('access-error').textContent = '';
+}
+
+// Close admin modal
+function closeAdminModal() {
+    const modal = document.getElementById('admin-modal');
+    modal.classList.remove('active');
+    document.getElementById('access-code-input').value = '';
+    document.getElementById('access-error').textContent = '';
+}
+
+// Handle Enter key in input
+function handleEnterKey(event) {
+    if (event.key === 'Enter') {
+        validateAccessCode();
+    }
+}
+
+// Validate access code
+function validateAccessCode() {
+    const input = document.getElementById('access-code-input');
+    const errorEl = document.getElementById('access-error');
+    const code = input.value.trim();
+
+    if (code === ACCESS_CODE) {
+        closeAdminModal();
+        showStatsPanel();
+    } else {
+        errorEl.textContent = '❌ Código incorrecto';
+        input.value = '';
+        input.focus();
+    }
+}
+
+// Show stats panel and load data
+async function showStatsPanel() {
+    const panel = document.getElementById('stats-panel');
+    panel.classList.add('active');
+    await loadStats();
+}
+
+// Close stats panel
+function closeStatsPanel() {
+    const panel = document.getElementById('stats-panel');
+    panel.classList.remove('active');
+}
+
+// Load statistics from Supabase
+async function loadStats() {
+    if (!supabase) return;
+
+    try {
+        // Fetch all visits
+        const { data: visits, error } = await supabase
+            .from('page_visits')
+            .select('*')
+            .order('visited_at', { ascending: false });
+
+        if (error) {
+            console.error('Error loading stats:', error.message);
+            return;
+        }
+
+        // Calculate summary stats
+        const totalVisits = visits.length;
+        const uniqueCountries = [...new Set(visits.map(v => v.country))].length;
+
+        // Calculate today's visits
+        const today = new Date().toISOString().split('T')[0];
+        const todayVisits = visits.filter(v =>
+            v.visited_at && v.visited_at.startsWith(today)
+        ).length;
+
+        // Update summary cards
+        document.getElementById('total-visits').textContent = totalVisits;
+        document.getElementById('unique-countries').textContent = uniqueCountries;
+        document.getElementById('today-visits').textContent = todayVisits;
+
+        // Populate table
+        const tableBody = document.getElementById('stats-table-body');
+        tableBody.innerHTML = '';
+
+        visits.forEach((visit, index) => {
+            const row = document.createElement('tr');
+            const date = new Date(visit.visited_at);
+            const formattedDate = date.toLocaleDateString('es-MX', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${visit.ip_address || 'N/A'}</td>
+                <td>${visit.country || 'Unknown'}</td>
+                <td>${visit.city || 'Unknown'}</td>
+                <td>${formattedDate}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error('Error loading stats:', error);
+    }
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('admin-modal');
+    if (e.target === modal) {
+        closeAdminModal();
+    }
+});
+
+// Initialize Supabase when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit for Supabase script to load
+    setTimeout(initSupabase, 500);
+});
